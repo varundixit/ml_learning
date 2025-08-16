@@ -2,10 +2,10 @@ package main
 
 import (
     "fmt"
-    "hello/utils" // import our custom package (folder name)
+    "github.com/varundixit/ml_learning/learning_go/utils"
 )
 
 func main() {
-    fmt.Println("Starting the program...")
+    fmt.Println("Starting program...")
     utils.SayHello("Varun")
 }
