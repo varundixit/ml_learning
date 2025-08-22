@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"learning_go/utils"
 	"strconv"
+	"time"
 )
 
 func main() {
@@ -36,13 +37,22 @@ func main() {
 	}
 
 	var prime_slice []int
+	var simplified_prime_slice []int
+	var elapsed1 time.Duration
+	var elapsed2 time.Duration
+
+	//defer func(start1 time.Time) {elapsed1 = utils.MeasureTime(start1)}(time.Now())
+	start1 := time.Now() // record start time
 	prime_slice = utils.PrimeFactors(favNumber)
+	elapsed1 = time.Since(start1) // calculate elapsed time
+	
+	//defer func(start2 time.Time) {elapsed2 = utils.MeasureTime(start2)}(time.Now())	
+	start2 := time.Now() // record start time
+	simplified_prime_slice = utils.PrimeFactorSimplified(favNumber)
+	elapsed2 = time.Since(start2) // calculate elapsed time
 
 	fmt.Printf("Hello %s, your favorite number is %s and it %s\n", name, number_type, prime)
 
-	fmt.Printf("prime factors are %v\n", prime_slice)
-	// TODO: Add logic to check if favNumber is even or odd
-	// Hint: Use favNumber % 2 == 0 to check even
-	// Then print something like:
-	// "Hello, <name>! Your favorite number is even."
+	fmt.Printf("It took %s to calculate the prime factors %v\n", elapsed1, prime_slice)
+	fmt.Printf("It took %s to calculate the prime factors %v\n", elapsed2, simplified_prime_slice)
 }
